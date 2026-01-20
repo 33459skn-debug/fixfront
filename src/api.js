@@ -1,5 +1,5 @@
-// API URL - uses environment variable in production, localhost in development
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+// API URL - uses environment variable in production, Render backend as default
+const API_URL = process.env.REACT_APP_API_URL || 'https://fixend.onrender.com/api';
 
 // Get token from localStorage
 const getToken = () => localStorage.getItem('token');
