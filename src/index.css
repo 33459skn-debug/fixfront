@@ -34,3 +34,22 @@ code {
     transform: scale(1);
   }
 }
+
+/* Mobile-friendly touch targets */
+@media (max-width: 768px) {
+  button, input, select, textarea {
+    min-height: 44px;
+    font-size: 16px; /* Prevents iOS zoom on focus */
+  }
+  
+  /* Better tap targets */
+  nav button {
+    min-height: 48px;
+  }
+}
+
+/* Prevent horizontal scroll on mobile */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}

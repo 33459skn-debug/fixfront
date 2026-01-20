@@ -17,7 +17,7 @@ export default function TodoistClone() {
   const [tasks, setTasks] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const [selectedView, setSelectedView] = useState('inbox');
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(typeof window !== 'undefined' ? window.innerWidth >= 768 : true);
   const [showAddTask, setShowAddTask] = useState(false);
   const [taskPriority, setTaskPriority] = useState('none');
   const [taskDeadline, setTaskDeadline] = useState({ day: '', month: '', year: '' });
@@ -338,8 +338,15 @@ export default function TodoistClone() {
 
   return (
     <div className="flex h-screen bg-neutral-50 text-neutral-900">
+      {/* Mobile Overlay */}
+      {sidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 z-30 md:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
       {/* Sidebar */}
-      <div className={`${sidebarOpen ? 'w-72' : 'w-0'} transition-all duration-300 bg-amber-50 border-r border-amber-200 overflow-hidden flex flex-col`}>
+      <div className={`${sidebarOpen ? 'w-72' : 'w-0'} fixed md:relative z-40 h-full transition-all duration-300 bg-amber-50 border-r border-amber-200 overflow-hidden flex flex-col`}>
         <div className="p-6">
           <div className="flex items-center gap-2 mb-8">
             <CheckCircle2 className="text-red-600" size={28} />
@@ -370,8 +377,8 @@ export default function TodoistClone() {
                 key={view.id}
                 onClick={() => setSelectedView(view.id)}
                 className={`w-full flex items-center gap-3 px-3 py-2 rounded-md transition-colors ${selectedView === view.id
-                    ? 'bg-amber-200 text-neutral-900'
-                    : 'hover:bg-amber-100 text-neutral-700'
+                  ? 'bg-amber-200 text-neutral-900'
+                  : 'hover:bg-amber-100 text-neutral-700'
                   }`}
               >
                 <view.icon size={20} />
@@ -405,7 +412,7 @@ export default function TodoistClone() {
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Header */}
-        <header className="bg-white border-b border-neutral-200 px-8 py-4 flex items-center justify-between">
+        <header className="bg-white border-b border-neutral-200 px-4 md:px-8 py-3 md:py-4 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <button
               onClick={() => setSidebarOpen(!sidebarOpen)}
@@ -413,7 +420,7 @@ export default function TodoistClone() {
             >
               {sidebarOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
-            <h1 className="text-2xl font-bold capitalize">{selectedView}</h1>
+            <h1 className="text-xl md:text-2xl font-bold capitalize">{selectedView}</h1>
           </div>
 
           {/* Sort Button */}
@@ -478,8 +485,8 @@ export default function TodoistClone() {
         </header>
 
         {/* Task List */}
-        <div className="flex-1 overflow-y-auto px-8 py-6">
-          <div className="max-w-3xl">
+        <div className="flex-1 overflow-y-auto px-4 md:px-8 py-4 md:py-6">
+          <div className="max-w-3xl mx-auto">
             {/* Add Task Button */}
             {!showAddTask ? (
               <button
@@ -504,10 +511,10 @@ export default function TodoistClone() {
                 />
 
                 {/* Priority and Deadline Row */}
-                <div className="flex items-center gap-3 mb-5 pb-4 border-b border-neutral-200">
+                <div className="flex flex-wrap items-center gap-3 mb-5 pb-4 border-b border-neutral-200">
                   {/* Deadline Input */}
-                  <div className="flex items-center gap-2">
-                    <CalendarDays size={18} className="text-green-600" />
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <CalendarDays size={18} className="text-green-600 hidden sm:block" />
                     <div className="flex items-center gap-2">
                       <input
                         type="text"
