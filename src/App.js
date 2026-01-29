@@ -5,7 +5,6 @@ import { authAPI, tasksAPI } from ‘./api’;
 export default function TodoistClone() {
 // Auth state
 const [isAuthenticated, setIsAuthenticated] = useState(false);
-
 const [user, setUser] = useState(null);
 const [authMode, setAuthMode] = useState(‘login’); // ‘login’ or ‘signup’
 const [authEmail, setAuthEmail] = useState(’’);
