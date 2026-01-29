@@ -80,7 +80,7 @@ isLoggedIn: () => {
 export const tasksAPI = {
 getAll: async () => {
 const timestamp = new Date().getTime();
-const data = await apiCall(`/tasks?_t=${timestamp}`);
+const data = await apiCall('/tasks?_t=' + timestamp);
 return data.tasks;
 },
 
