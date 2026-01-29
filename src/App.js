@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Plus, Inbox, Calendar, CheckCircle2, Circle, Trash2, Menu, X, Flag, CalendarDays, ArrowUpDown, LogOut, User } from ‘lucide-react’;
+import { Plus, Inbox, Calendar, CheckCircle2, Circle, Trash2, Menu, X, Flag, CalendarDays, ArrowUpDown, LogOut, User } from 'lucide-react';
 import { authAPI, tasksAPI } from ‘./api’;
 
 export default function TodoistClone() {
