@@ -79,7 +79,6 @@ isLoggedIn: () => {
 // Tasks API
 export const tasksAPI = {
 getAll: async () => {
-// Add timestamp to prevent caching
 const timestamp = new Date().getTime();
 const data = await apiCall(`/tasks?_t=${timestamp}`);
 return data.tasks;
