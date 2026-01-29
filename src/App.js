@@ -6,7 +6,7 @@ export default function TodoistClone() {
 // Auth state
 const [isAuthenticated, setIsAuthenticated] = useState(false);
 const [user, setUser] = useState(null);
-const [authMode, setAuthMode] = useState(‘login’); // ‘login’ or ‘signup’
+const [authMode, setAuthMode] = useState('login'); // ‘login’ or ‘signup’
 const [authEmail, setAuthEmail] = useState(’’);
 const [authPassword, setAuthPassword] = useState(’’);
 const [authName, setAuthName] = useState(’’);
